@@ -1,6 +1,6 @@
 package sort;
 
-public class Insert implements ISort{
+public class InsertSort implements ISort{
 
 	@Override
 	public void sort(int[] data) {
@@ -8,8 +8,8 @@ public class Insert implements ISort{
 			int currentData = data[i];
 			if (currentData >= data[i - 1]) continue;
 			int j = i - 1;
-			for (; currentData < data[j]; --j) {
-				data[j] = data[j + 1];
+			for (; j >=0 && data[j] > currentData; --j) {
+				data[j + 1] = data[j];
 			}
 			data[j + 1] = currentData;
 		}
