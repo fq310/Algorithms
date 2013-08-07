@@ -1,15 +1,15 @@
 package sort;
 
-public class TestQuickSort extends TestTemplate {
-	
+public class TestMergeSort extends TestTemplate {
+
 	@Override
 	protected ISort getSortObject() {
-		return new QuickSort();
+		return new MergeSort();
 	}
 
 	@Override
 	protected String getSortName() {
-		return "quick sort";
+		return "merge sort";
 	}
 
 }

@@ -3,8 +3,15 @@ package sort;
 import static org.junit.Assert.fail;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 public abstract class TestTemplate {
+	
+	@Test
+	public void test() {
+		executeTest();
+	}
+	
 	protected void executeTest() {
 		TestData testData = new TestData();
 		int[][] unSortedData = testData.getUnsortedData();
@@ -20,13 +27,22 @@ public abstract class TestTemplate {
 		
 	}
 
-	private void compare(int[] testCase, int[] sortedCase) {
-		if (testCase.length != sortedCase.length) fail(getSortName() + ": sorted data length is not equal to the target data.");
-		for (int i = 0; i < testCase.length; ++i) {
-			Assert.assertArrayEquals(getSortName() + ": test case " + i + " failed. " +
-					"sorted: " + testCase[i] + 
-					" . Target: " + sortedCase[i], testCase, sortedCase);
+	private void compare(int[] sortedCase, int[] targetCase) {
+		if (sortedCase.length != targetCase.length) fail(getSortName() + ": sorted data length is not equal to the target data.");
+		for (int i = 0; i < sortedCase.length; ++i) {
+			Assert.assertArrayEquals(getSortName() + " failed. Sorted case :" + getArrayString(sortedCase) +
+					" Target Data: " + getArrayString(targetCase), sortedCase, targetCase);
 		}
+	}
+	
+	private String getArrayString (int[] testCase) {
+		StringBuilder result = new StringBuilder();
+		result.append("[ ");
+		for (int i : testCase) {
+			result.append(i).append(" ");
+		}
+		result.append("]");
+		return result.toString();
 	}
 
 	abstract protected ISort getSortObject();
