@@ -10,6 +10,7 @@ public class Deque<Item> implements Iterable<Item> {
 		Node next;
 		Node pre;
 	}
+	
 	public Deque() {
 		first = null;
 		last  = null;
