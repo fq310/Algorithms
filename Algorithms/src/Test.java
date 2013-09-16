@@ -1,5 +1,3 @@
-import java.util.Iterator;
-
 
 public class Test {
 
@@ -7,24 +5,24 @@ public class Test {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-//		Data b[] = {new Data(17), new Data(47), new Data(80), new Data(11), new Data(46), new Data(14), new Data(42), new Data(49), new Data(44), new Data(53)};
-//		Selection.sort(b);
-//		Data a[] = {new Data(64), new Data(14), new Data(88), new Data(79), new Data(60), new Data(98), new Data(91), new Data(42), new Data(30), new Data(72)};
-//		Shell.sort(a);
-		RandomizedQueue<Integer> q = new RandomizedQueue<Integer>();
-		q.enqueue(1);
-		q.enqueue(2);
-		q.enqueue(3);
-		q.enqueue(4);
-		Iterator<Integer> i1 = q.iterator();
-		while (i1 != null && i1.hasNext()) {
-			StdOut.print(i1.next() + " ");
-		}
-		StdOut.println();
-		Iterator<Integer> i2 = q.iterator();
-		while (i2 != null && i2.hasNext()) {
-			StdOut.print(i2.next() + " ");
-		}
+		Data b[] = {new Data(28), new Data(59), new Data(74), new Data(91), new Data(45), new Data(40), new Data(90), new Data(10), new Data(19), new Data(27)};
+		Selection.sort(b);
+		Data a[] = {new Data(54), new Data(97), new Data(91), new Data(18), new Data(48), new Data(20), new Data(71), new Data(55), new Data(37), new Data(43)};
+		Shell.sort(a);
+//		RandomizedQueue<Integer> q = new RandomizedQueue<Integer>();
+//		q.enqueue(1);
+//		q.enqueue(2);
+//		q.enqueue(3);
+//		q.enqueue(4);
+//		Iterator<Integer> i1 = q.iterator();
+//		while (i1 != null && i1.hasNext()) {
+//			StdOut.print(i1.next() + " ");
+//		}
+//		StdOut.println();
+//		Iterator<Integer> i2 = q.iterator();
+//		while (i2 != null && i2.hasNext()) {
+//			StdOut.print(i2.next() + " ");
+//		}
 	}
 
 }

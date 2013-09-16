@@ -30,27 +30,27 @@ public class Point implements Comparable<Point> {
     // slope between this point and that point
     public double slopeTo(Point that) {
         /* YOUR CODE HERE */
-    	if (x == that.x && y != that.y) {
-    		return Double.POSITIVE_INFINITY;
-    	}
-    	if (y == that.y && x != that.x) {
-    		return +0.0;
-    	}
-    	if (x == that.x && y == that.y) {
-    		return Double.NEGATIVE_INFINITY;
-    	}
-    	return (that.y - y) / (that.x - x);
+        if (x == that.x && y != that.y) {
+            return Double.POSITIVE_INFINITY;
+        }
+        if (y == that.y && x != that.x) {
+            return +0.0;
+        }
+        if (x == that.x && y == that.y) {
+            return Double.NEGATIVE_INFINITY;
+        }
+        return ((double) (that.y - y)) / ((double) (that.x - x));
     }
 
     // is this point lexicographically smaller than that one?
     // comparing y-coordinates and breaking ties by x-coordinates
     public int compareTo(Point that) {
         /* YOUR CODE HERE */
-    	if (y < that.y || (y == that.y && x < that.x)) {
-    		return -1;
-    	}
-    	if (y == that.y || x == that.x) return 0;
-    	return 1;
+        if (y < that.y || (y == that.y && x < that.x)) {
+            return -1;
+        }
+        if (y == that.y && x == that.x) return 0;
+        return 1;
     }
 
     // return string representation of this point
@@ -65,19 +65,19 @@ public class Point implements Comparable<Point> {
     }
     
     private static class BySlope implements Comparator<Point> {
-		private Point point;
+        private Point point;
 
-		public BySlope(Point point) {
-			this.point = point;
-		}
+        public BySlope(Point point) {
+            this.point = point;
+        }
 
-		@Override
-		public int compare(Point a, Point b) {
-			double slopeA = point.slopeTo(a);
-			double slopeB = point.slopeTo(b);
-			if (slopeA < slopeB) return -1;
-			if (slopeA == slopeB) return 0;
-			return 1;
-		}
+        @Override
+        public int compare(Point a, Point b) {
+            double slopeA = point.slopeTo(a);
+            double slopeB = point.slopeTo(b);
+            if (slopeA < slopeB) return -1;
+            if (slopeA == slopeB) return 0;
+            return 1;
+        }
     }
 }
