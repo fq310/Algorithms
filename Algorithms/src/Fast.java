@@ -66,7 +66,7 @@ public class Fast {
                         if (notDrawed(line)) {
                             StdOut.println(line);
                             linePoints[0].drawTo(linePoints[linePointsCount - 1]);
-                            drawedLine[drawIndex ++] = line;
+                            addLine(line);
                         }
                     }
                     linePoints[0] = points[originPoint];
@@ -74,14 +74,25 @@ public class Fast {
                 }
             }
             if (linePointsCount >= 3) {
-                String line = getLine(linePoints, linePointsCount - 1);
+                String line = getLine(linePoints, linePointsCount);
                 if (notDrawed(line)) {
                     StdOut.println(getLine(linePoints, linePointsCount));
-                    linePoints[0].drawTo(linePoints[linePointsCount]);
-                    drawedLine[drawIndex ++] = line;
+                    linePoints[0].drawTo(linePoints[linePointsCount - 1]);
+                    addLine(line);
                 }
             }
         }
+    }
+
+    private static void addLine(String newLine) {
+        if (drawIndex >= drawedLine.length) {
+            String[] temp = new String[drawIndex*2];
+            for (int i = 0; i < drawedLine.length; ++i) {
+                temp[i] = drawedLine[i];
+            }
+            drawedLine = temp;
+        }
+        drawedLine[drawIndex++] = newLine;
     }
 
     private static boolean notDrawed(String newLine) {

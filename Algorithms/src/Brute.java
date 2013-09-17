@@ -47,7 +47,8 @@ public class Brute {
                             result.append(fourPoints[3]);
                             String line = result.toString();
                             boolean existed = false;
-                            for (int i = 0; i < linesCount; ++i) {
+                            for (int i = 0; i < lines.length; ++i) {
+                                if (lines[i] == null) break;
                                 if (lines[i].equals(line)) {
                                     existed = true;
                                     break;
@@ -55,19 +56,22 @@ public class Brute {
                             }
                             if (existed == true) continue;
                             StdOut.println(line);
-                            lines[linesCount++] = line;
+                            linesCount = addLine(lines, linesCount, line);
                             
                             boolean drawed = false;
                             String drawLine = fourPoints[0].toString() + fourPoints[3].toString();
-                            for (int i = 0; i < drawedLinesNum; ++i) {
-                                if (drawedLines[i].equals(drawLine)) {
+                            for (int i = 0; i < drawedLines.length; ++i) {
+                                String drawedLine = drawedLines[i];
+                                if (drawedLine == null) break;
+                                if (drawedLine.equals(drawLine)) {
                                     drawed = true;
                                     break;
                                 }
                             }
                             if (drawed == false) {
                                 fourPoints[0].drawTo(fourPoints[3]);
-                                drawedLines[drawedLinesNum++] = drawLine;
+                                drawedLinesNum = addLine(drawedLines,
+                                        drawedLinesNum, drawLine);
                             }
                         }
                     }
@@ -75,6 +79,18 @@ public class Brute {
                     
             }
         }
+    }
+
+    private static int addLine(String[] lines, int linesCount, String newLine) {
+        if (linesCount >= lines.length) {
+            String[] temp = new String[lines.length*2];
+            for (int i = 0; i < lines.length; ++i) {
+                temp[i] = lines[i];
+            }
+            lines = temp;
+        }
+        lines[linesCount] = newLine;
+        return ++linesCount;
     }
 
 }
