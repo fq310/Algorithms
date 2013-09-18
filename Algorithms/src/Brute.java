@@ -1,6 +1,8 @@
 
 public class Brute {
 
+     private static String[] drawedLines;
+     private static int drawedLinesNum = 0;
     /**
      * @param args
      */
@@ -9,6 +11,7 @@ public class Brute {
         In fileInput = new In(fileName);
         int[] data = fileInput.readAllInts();
         int pointCount = data[0];
+        drawedLines = new String[pointCount];
         Point[] points = new Point[pointCount];
         StdDraw.setXscale(0, 32768);
         StdDraw.setYscale(0, 32768);
@@ -21,8 +24,7 @@ public class Brute {
         
         String[] lines = new String[pointCount];
         int linesCount = 0;
-        String[] drawedLines = new String[pointCount];
-        int drawedLinesNum = 0;
+       
         int n, m, k, l;
         int len = points.length;
         String arrow = " -> ";
@@ -56,23 +58,19 @@ public class Brute {
                             }
                             if (existed == true) continue;
                             StdOut.println(line);
-                            linesCount = addLine(lines, linesCount, line);
-                            
-                            boolean drawed = false;
-                            String drawLine = fourPoints[0].toString() + fourPoints[3].toString();
-                            for (int i = 0; i < drawedLines.length; ++i) {
-                                String drawedLine = drawedLines[i];
-                                if (drawedLine == null) break;
-                                if (drawedLine.equals(drawLine)) {
-                                    drawed = true;
-                                    break;
+                            if (linesCount >= lines.length) {
+                                String[] temp = new String[lines.length*2];
+                                for (int i = 0; i < lines.length; ++i) {
+                                    temp[i] = lines[i];
                                 }
+                                lines = temp;
                             }
-                            if (drawed == false) {
-                                fourPoints[0].drawTo(fourPoints[3]);
-                                drawedLinesNum = addLine(drawedLines,
-                                        drawedLinesNum, drawLine);
-                            }
+                            lines[linesCount++] = line;
+                            
+                            
+                           draw(fourPoints[0], fourPoints[1]);
+                           draw(fourPoints[1], fourPoints[2]);
+                           draw(fourPoints[2], fourPoints[3]);
                         }
                     }
                 }
@@ -80,17 +78,30 @@ public class Brute {
             }
         }
     }
-
-    private static int addLine(String[] lines, int linesCount, String newLine) {
-        if (linesCount >= lines.length) {
-            String[] temp = new String[lines.length*2];
-            for (int i = 0; i < lines.length; ++i) {
-                temp[i] = lines[i];
-            }
-            lines = temp;
-        }
-        lines[linesCount] = newLine;
-        return ++linesCount;
+    
+    private static void draw(Point point1, Point point2) {
+         boolean drawed = false;
+         String drawLine = point1.toString() + point2.toString();
+         for (int i = 0; i < drawedLines.length; ++i) {
+             String drawedLine = drawedLines[i];
+             if (drawedLine == null) break;
+             if (drawedLine.equals(drawLine)) {
+                 drawed = true;
+                 break;
+             }
+         }
+         if (drawed == false) {
+             point1.drawTo(point2);
+             if (drawedLinesNum >= drawedLines.length) {
+                 String[] temp = new String[drawedLines.length*2];
+                 for (int i = 0; i < drawedLines.length; ++i) {
+                     temp[i] = drawedLines[i];
+                 }
+                 drawedLines = temp;
+             }
+             drawedLines[drawedLinesNum] = drawLine;
+             drawedLinesNum++;
+         }
     }
 
 }

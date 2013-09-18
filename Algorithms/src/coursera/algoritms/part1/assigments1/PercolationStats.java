@@ -1,3 +1,9 @@
+package coursera.algoritms.part1.assigments1;
+import StdIn;
+import StdOut;
+import StdRandom;
+import StdStats;
+
 public class PercolationStats {
 	private Percolation percolation;
 	private double mean;

@@ -1,3 +1,7 @@
+package coursera.algoritms.part1.assigments2;
+import StdIn;
+import StdOut;
+
 
 public class Subset {
     public static void main(String[] args) {

@@ -1,3 +1,6 @@
+package coursera.algoritms.part1.assigments1;
+import WeightedQuickUnionUF;
+
 public class Percolation {
 	WeightedQuickUnionUF quickUnion;
 	private int gridSize;

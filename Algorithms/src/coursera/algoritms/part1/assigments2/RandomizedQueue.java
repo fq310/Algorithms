@@ -1,3 +1,6 @@
+package coursera.algoritms.part1.assigments2;
+import StdRandom;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
