@@ -30,6 +30,48 @@ public class Chapter1 {
 		return true;
 	}
 	
+	//1.4
+	public void replace(char[] str, int length) {
+		int spaceCount = 0;
+		for (int i = 0; i < length; ++i) {
+			if (str[i] == ' ') ++spaceCount;
+		}
+		
+		int sumLength = spaceCount * 2 + length;
+		for (int i = length - 1; i >=0; --i) {
+			if (str[i] == ' ') {
+				str[--sumLength] = '0';
+				str[--sumLength] = '2';
+				str[--sumLength] = '%';
+			} else {
+				str[--sumLength] = str[i];
+			}
+		}
+		
+	}
+	
+	//1.5
+	public String compress(String str) {
+		StringBuilder buffer = new StringBuilder();
+		for (int i = 0; i < str.length(); ) {
+			char start = str.charAt(i);
+			int j = i + 1;
+			while (j < str.length() && str.charAt(j) == start) {
+				++j;
+			}
+			int count = j - i;
+			buffer.append(start);
+			if (count == 1) {
+				buffer.append(1); 
+			} else {
+				buffer.append(count);
+			}
+			i = j;
+		}
+		String result = buffer.toString();
+		return result.length() < str.length() ? result : str;
+	}
+	
 	//1.7
 	public void setZeros(int[][] matrix) {
 		boolean[] rows = new boolean[matrix.length];
