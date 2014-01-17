@@ -47,8 +47,71 @@ public class Chapter2<T> {
 		node.next = next.next;
 	}
 
-	public void partition(Node<T> list, T i) {
-		
+	//2.4
+	public Node<Integer> partition(Node<Integer> list, Integer i) {
+		if (list == null) return null;
+		Node<Integer> node = list;
+		Node<Integer> smaller = new Node<Integer>();
+		Node<Integer> bigger = new Node<Integer>();
+		Node<Integer> biggerHead = bigger;
+		Node<Integer> smallerHead = smaller;
+		while (node != null) {
+			if (node.value >= i) {
+				bigger.next = new Node<Integer>();
+				bigger = bigger.next;
+				bigger.value = node.value;
+			} else {
+				smaller.next = new Node<Integer>();
+				smaller = smaller.next;
+				smaller.value = node.value;
+			}
+			node = node.next;
+		}
+		smaller.next = biggerHead.next;
+		return smallerHead.next;
+	}
+
+	public Node<Integer> add(Node<Integer> list1, Node<Integer> list2) {
+		Node<Integer> result = new Node<>();
+		result.value = 0;
+		Node<Integer> node = result;
+		while (list1 != null && list2 != null) {
+			int sum = list1.value + list2.value + node.value;
+			node = createSumNode(node, sum);
+			list1 = list1.next;
+			list2 = list2.next;
+		}
+		while (list1 != null) {
+			int sum = list1.value + node.value;
+			node = createSumNode(node, sum);
+			list1 = list1.next;
+		}
+		while (list2 != null) {
+			int sum = list2.value + node.value;
+			node = createSumNode(node, sum);
+			list2 = list2.next;
+		}
+		Node<Integer> n = result;
+		while (n != null && n.next != node) {
+			n = n.next;
+		}
+		n.next = null;
+		return result;
+	}
+
+	private Node<Integer> createSumNode(Node<Integer> node, int sum) {
+		if (sum > 9) {
+			node.value = sum % 10;
+			node.next = new Node<>();
+			node = node.next;
+			node.value = 1;
+		} else {
+			node.value = sum;
+			node.next = new Node<>();
+			node = node.next;
+			node.value = 0;
+		}
+		return node;
 	}
 	
 	
