@@ -1,6 +1,8 @@
 package cci;
 
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Chapter2<T> {
 	//2.1
@@ -46,9 +48,9 @@ public class Chapter2<T> {
 		node.value = next.value;
 		node.next = next.next;
 	}
-
-	public void partition(Node<T> list, T i) {
-		
+	
+	//2.4
+	public void partition(Node<Integer> list, int midValue) {
 	}
 	
 	
@@ -57,15 +59,6 @@ public class Chapter2<T> {
 class Node<T> {
 	public T value;
 	public Node<T> next;
-	
-	public void addToTail(T value) {
-		Node<T> node = this;
-		while (node.next != null) {
-			node = node.next;
-		}
-		node.next = new Node<T>();
-		node.next.value = value;
-	}
 	
 	@Override
 	public int hashCode() {

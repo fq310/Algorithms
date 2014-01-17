@@ -41,34 +41,33 @@ public class TestChapter2 {
 	
 	@Test
 	public void test2_4() {
-		Node<Integer> list = createNoRepeatlist();
-		ch2.partition(list, 5);
+		test2_4Template(new int[]{7, 6, 5}, 5, "567");
+		test2_4Template(new int[]{6, 6, 6, 8}, 4, "6668");
+		test2_4Template(new int[]{6, 6, 6, 8}, 8, "6668");
+		test2_4Template(new int[]{6, 6, 6, 8}, 6, "6668");
+		test2_4Template(new int[]{1, 8, 2, 9, 3, 10, 4, 11}, 5, "1234891011");
+	}
+	
+	private void test2_4Template(int[] data, int midValue, String orderedStr) {
+		Node<Integer> list = createList(data);
+		ch2.partition(list, midValue);
 		String newValue = getListValue(list);
-		Assert.assertTrue(newValue.equals("014618"));
+		Assert.assertTrue(newValue.equals(orderedStr));
+	}
+
+	public Node<Integer> createList(int[] data) {
+		Node<Integer> node = new Node<Integer>();
+		Node<Integer> head = node;
+		for (int i : data) {
+			node.next = new Node<Integer>();
+			node = node.next;
+			node.value = i;
+		}
+		return head.next;
 	}
 	
 	private Node<Integer> createLinklist() {
-		Node<Integer> head = new Node<Integer>();
-		head.value = 0;
-		head.addToTail(1);
-		head.addToTail(4);
-		head.addToTail(1);
-		head.addToTail(6);
-		head.addToTail(1);
-		head.addToTail(8);
-		return head;
-	}
-	
-	private Node<Integer> createNoRepeatlist() {
-		Node<Integer> head = new Node<Integer>();
-		head.value = 1;
-		head.addToTail(8);
-		head.addToTail(2);
-		head.addToTail(9);
-		head.addToTail(3);
-		head.addToTail(10);
-		head.addToTail(4);
-		return head;
+		return createList(new int[]{0, 1, 4, 1, 6, 1, 8});
 	}
 	
 	private String getListValue(Node<Integer> list) {
