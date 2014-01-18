@@ -3,7 +3,7 @@ package cci;
 import java.util.HashSet;
 
 public class Chapter2<T> {
-	//2.1
+	//2.1 
 	public void removeDuplicate(Node<T> head) {
 		HashSet<Node<T>> nodeSet = new HashSet<Node<T>>();
 		if (head == null) return;
@@ -40,7 +40,7 @@ public class Chapter2<T> {
 	}
 
 	//2.3
-	public void deleteTarget(Node<Integer> node) {
+	public void deleteNode(Node<Integer> node) {
 		if (node == null || node.next == null) return;
 		Node<Integer> next = node.next;
 		node.value = next.value;
@@ -71,6 +71,7 @@ public class Chapter2<T> {
 		return smallerHead.next;
 	}
 
+	//2.5
 	public Node<Integer> add(Node<Integer> list1, Node<Integer> list2) {
 		Node<Integer> result = new Node<>();
 		result.value = 0;
@@ -111,24 +112,61 @@ public class Chapter2<T> {
 			node = node.next;
 			node.value = 0;
 		}
-		return node;
+		return node;	
 	}
 	
+	//2.6
+	public Node<T> findLoopNode(Node<T> list) {
+		if (list == null) return list;
+		Node<T> fast = list;
+		Node<T> slow = list;
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			slow = slow.next;
+			if (fast == slow) break;
+		}
+		if (fast == null || fast.next == null) return null;
+		slow = list;
+		while (slow != fast) {
+			slow = slow.next;
+			fast = fast.next;
+		}
+		return slow;
+	}
+
+	//2.7
+	public boolean isPalindrome(Node<T> list) {
+		Node<T> reversedList = reverse(list);
+		while (list != null) {
+			if (!reversedList.value.equals(list.value))
+				return false;
+			list = list.next;
+			reversedList = reversedList.next;
+		}
+		return true;
+	}
 	
+	private Node<T> reverse(Node<T> list) {
+		if (list == null) return null;
+		Node<T> newHead = new Node<T>();
+		Node<T> head = list;
+		newHead.value = head.value;
+		head = head.next;
+		while (head != null) {
+			Node<T> node = new Node<T>();
+			node.value = head.value;
+			node.next = newHead;
+			newHead = node;
+			head = head.next;
+		}
+		return newHead;
+	}
+
 }
 
 class Node<T> {
 	public T value;
 	public Node<T> next;
-	
-	public void addToTail(T value) {
-		Node<T> node = this;
-		while (node.next != null) {
-			node = node.next;
-		}
-		node.next = new Node<T>();
-		node.next.value = value;
-	}
 	
 	@Override
 	public int hashCode() {
