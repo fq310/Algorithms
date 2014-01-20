@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Stack;
 
 public class Chapter3 {
-
+	//3.6 sort a stack
 	public void sort(Stack<Item> stack) {
 		Stack<Item> sortedStack = new Stack<Item>();
 		Item maxItem = stack.peek();
@@ -38,7 +38,37 @@ public class Chapter3 {
 	private int getStackNumer(Stack<Item> stack) {
 		return stack.size();
 	}
+	
+	//3.4
+	public void hanoiMove(Tower t1, Tower t2, Tower t3, int nodeNumber) {
+		t1.move(nodeNumber, t2, t3);
+	}
 
+}
+
+//3.4
+class Tower {
+	private Stack<Integer> tower = new Stack<>();
+	public Tower(int nodeNumber) {
+		for (int i = nodeNumber; i >=1; --i) {
+			tower.push(i);
+		}
+	}
+	
+	public void moveTopTo(Tower t) {
+		t.tower.push(this.tower.pop());
+	}
+	
+	public void move(int nodeNumber, Tower buffer, Tower destination) {
+		if (nodeNumber == 0) return;
+		move(nodeNumber - 1, destination, buffer);
+		moveTopTo(destination);
+		buffer.move(nodeNumber - 1, this, destination);
+	}
+
+	public Stack<Integer> getStack() {
+		return tower;
+	}
 }
 
 class Item {

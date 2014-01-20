@@ -1,6 +1,8 @@
 package cci;
 
 
+import static org.junit.Assert.*;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -57,6 +59,22 @@ public class TestChapter3 {
 	}
 	
 	@Test
+	public void test3_4() {
+		for (int i = 3; i <= 20; ++i) {
+			Tower t1 = new Tower(i);
+			Tower t2 = new Tower(0);
+			Tower t3 = new Tower(0);
+			Chapter3 ch3 = new Chapter3();
+			ch3.hanoiMove(t1, t2, t3, i);
+			StringBuilder moveResult = new StringBuilder();
+			for (int j = 1; j <= i; ++j) {
+				moveResult.append(j);
+			}
+			assertTrue(getStackString(t3.getStack()).equals(moveResult.toString()));
+		}
+	}
+	
+	@Test
 	public void test3_5() {
 		MyQueue<Integer> queue = new MyQueue<>();
 		Queue<Integer> testQueue = new LinkedList<>();
@@ -107,7 +125,7 @@ public class TestChapter3 {
 		Assert.assertTrue(getStackString(stack).equals("4222"));
 	}
 
-	private String getStackString(Stack<Item> stack) {
+	private String getStackString(Stack<? extends Object> stack) {
 		StringBuilder stackString = new StringBuilder();
 		while (!stack.isEmpty()) {
 			stackString.append(stack.pop());
