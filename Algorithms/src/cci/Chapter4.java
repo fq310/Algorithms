@@ -1,6 +1,7 @@
 package cci;
 
 import java.util.List;
+import java.util.Stack;
 
 public class Chapter4 {
 	public void preOrderTraversal(BNode node, List<BNode> nodeList) {
@@ -22,6 +23,38 @@ public class Chapter4 {
 		postOrderTraversal(node.left, nodeList);
 		postOrderTraversal(node.right, nodeList);
 		nodeList.add(node);
+	}
+	
+	public void preOrder(BNode root, List<BNode> nodeList) {
+		BNode node = root;
+		Stack<BNode> stack = new Stack<BNode>();
+		while (node != null || !stack.isEmpty()) {
+			while (node != null) {
+				stack.push(node);
+				nodeList.add(node);
+				node = node.left;
+			}
+			if (!stack.isEmpty()) {
+				BNode n = stack.pop();
+				node = n.right;
+			}
+		}
+	}
+	
+	public void inOrder(BNode root, List<BNode> nodeList) {
+		BNode node = root;
+		Stack<BNode> stack = new Stack<BNode>();
+		while (node != null || !stack.isEmpty()) {
+			while (node != null) {
+				stack.push(node);
+				node = node.left;
+			}
+			if (!stack.isEmpty()) {
+				BNode n = stack.pop();
+				nodeList.add(n);
+				node = n.right;
+			}
+		}
 	}
 	
 }

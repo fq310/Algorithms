@@ -15,7 +15,13 @@ public class TestChapter4 {
 		ch4.preOrderTraversal(tree, nodeList);
 		Assert.assertEquals(nodeList.toString(), "[5, 2, 1, 3, 4, 8, 6, 7, 9, 10]");
 		nodeList.clear();
+		ch4.preOrder(tree, nodeList);
+		Assert.assertEquals(nodeList.toString(), "[5, 2, 1, 3, 4, 8, 6, 7, 9, 10]");
+		nodeList.clear();
 		ch4.inOrderTraversal(tree, nodeList);
+		Assert.assertEquals(nodeList.toString(), "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]");
+		nodeList.clear();
+		ch4.inOrder(tree, nodeList);
 		Assert.assertEquals(nodeList.toString(), "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]");
 		nodeList.clear();
 		ch4.postOrderTraversal(tree, nodeList);
