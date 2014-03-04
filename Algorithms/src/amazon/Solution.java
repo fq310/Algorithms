@@ -9,6 +9,7 @@ Each word should be lower case, for example, one hundred and twenty, and there s
 
 Samples
 
+
 input:
 1
 output:
