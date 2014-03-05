@@ -35,7 +35,7 @@ input:
 output:
 one hundred and twenty three thousand four hundred and fifty six
  */
-public class Solution {
+public class Question001 {
 	public static void main(String[] args) {
 		printNumber(1);
 		printNumber(23);
