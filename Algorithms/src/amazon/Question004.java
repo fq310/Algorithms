@@ -45,13 +45,12 @@ public class Question004 {
 			char ch = conf.charAt(i);
 			int j = i;
 			if (ch == '=') {
+				String name = findName(conf, i);
 				if (conf.charAt(i + 1) == '{') {
-					String name = findName(conf, i);
 					Object map = generateMap(confMap, name);
 					j = findRightBracketIndex(conf, i + 2);
 					parseConf(conf.substring(i + 2, j), (Map<String, Object>) map);
 				} else {
-					String name = findName(conf, i);
 					j = findTheFirstSemicolinIndex(conf, i);
 					confMap.put(name, conf.substring(i + 1, j));
 				}
