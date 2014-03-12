@@ -18,7 +18,7 @@ Input:
 Output:
 4,4,5
  */
-public class Questions002 {
+public class Question002 {
 
 	public static void main(String[] args) {
 		List<List<Integer>> input = new ArrayList<List<Integer>>();
