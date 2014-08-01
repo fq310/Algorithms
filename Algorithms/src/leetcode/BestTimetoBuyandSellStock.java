@@ -1,7 +1,7 @@
 package leetcode;
 
 /*
- * ��ͷ���������ĳһ�������С�㣬��һ���Ӧ����Ϊ�µ���С�����
+ * 从头遍历，如果某一点低于最小点，这一点就应该作为新的最小点计算
  */
 public class BestTimetoBuyandSellStock {
     public int maxProfit(int[] prices) {

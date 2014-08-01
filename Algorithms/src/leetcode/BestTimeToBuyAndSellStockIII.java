@@ -1,13 +1,13 @@
 package leetcode;
 
 /*
- * �Ľ��ķ������Ƕ�̬�滮�ˣ��Ǿ��ǵ�һ��ɨ�裬�ȼ����������[0,...,i]�е����������һ�����鱣����������ôʱ����O(n)��
- * �ڶ���������ɨ�裬����������[i,...,n-1]�ϵ����������Ȼ��O(n)
- * ��������㷨�ĸ��ӶȾ���O(n)�ġ�
- * ע������������ʱ�򣬼��㷽��ҲҪ��֮����������סmaxIndex�ˣ�������minIndex
- * ����ٺϲ�һ�¼�������
- * profitsBackWord[0]�ǵ��������ģ���Ϊ����ʵ��profitsForward[prices.length]�ǵȼ۵ġ�
- * ����ѭ���ﶼû�д�����������Ҫ��������һ�¡�
+ * 改进的方法就是动态规划了，那就是第一步扫描，先计算出子序列[0,...,i]中的最大利润，用一个数组保存下来，那么时间是O(n)。
+ * 第二步是逆向扫描，计算子序列[i,...,n-1]上的最大利润，依然是O(n)
+ * 所以最后算法的复杂度就是O(n)的。
+ * 注意在逆向计算的时候，计算方法也要随之反过来，记住maxIndex了，而不是minIndex
+ * 最后再合并一下计算结果。
+ * profitsBackWord[0]是单独处理的，因为他其实和profitsForward[prices.length]是等价的。
+ * 但是循环里都没有处理到。所以要单独处理一下。
  */
 public class BestTimeToBuyAndSellStockIII {
     public int maxProfit(int[] prices) {
