@@ -11,6 +11,9 @@ public class FirstMissingPositiveTest {
 		FirstMissingPositive f = new FirstMissingPositive();
 		assertEquals(f.firstMissingPositive(new int[]{1,2,0}), 3);
 		assertEquals(f.firstMissingPositive(new int[]{1,1}), 2);
+		assertEquals(f.firstMissingPositive(new int[]{}), 1);
+		assertEquals(f.firstMissingPositive(new int[]{1}), 2);
+		assertEquals(f.firstMissingPositive(new int[]{1,2}), 3);
 		assertEquals(f.firstMissingPositive(new int[]{3,4,-1,1}), 2);
 	}
 

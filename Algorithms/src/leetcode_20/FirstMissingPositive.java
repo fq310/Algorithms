@@ -11,7 +11,7 @@ public class FirstMissingPositive {
     	for (int i = 0; i < A.length; ++i) {
     		if (A[i] - 1 != i) return i + 1;
     	}
-        return -1;
+        return A.length + 1;
     }
 
 	private void swap(int[] a, int i, int j) {

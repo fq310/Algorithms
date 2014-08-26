@@ -11,6 +11,7 @@ public class PermutationsTest {
 		Permutations p = new Permutations();
 		assertEquals(p.permute(new int[]{1,2,3}).toString(), "[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]");
 //		assertEquals(p.permute(new int[]{0,-1,1}).toString(), "[[1, 2, 3], [1, 3, 2], [2, 1, 3], [2, 3, 1], [3, 1, 2], [3, 2, 1]]");
+		p.permute(new int[]{1,1,2});
 	}
 
 }
