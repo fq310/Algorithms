@@ -12,7 +12,7 @@ public class PermutationSequence {
 			factorial = factorial / i;
 			int valueI = k / factorial;
 			buf.append(valueI);
-			k = k % i;
+			k = k % factorial;
 		}
 		return buf.toString();
 	}
