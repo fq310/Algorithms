@@ -1,57 +1,77 @@
 package leetcode_20;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class LRUCache {
 	private int capacity;
 	private int currentSize = 0;
-	private Map<Integer, Integer> keyValueMap = new HashMap<>();
-	private List<Integer> recentList = new ArrayList<>();
-	class Data {
+	private Map<Integer, Node> keyNodeMap = new HashMap<>();
+	private Node head = new Node(-1, -1), tail = new Node(-1, -1);
+	
+	class Node {
+		public Node(int key, int value) {
+			this.key = key;
+			this.value = value;
+		}
 		int key;
 		int value;
+		Node next;
+		Node pre;
+		@Override
+		public String toString() {
+			return "Node [key=" + key + ", value=" + value + "]";
+		}
 	}
     public LRUCache(int capacity) {
 		this.capacity = capacity;
+		head.next = tail;
+		tail.pre = head;
     }
     
     public int get(int key) {
-    	Integer value = keyValueMap.get(key);
-    	if (value == null) return -1;
-        return value;
+    	Node node = keyNodeMap.get(key);
+    	if (node == null) return -1;
+    	remove(key);
+		addToHead(key, node.value);
+        return node.value;
     }
     
     public void set(int key, int value) {
-    	if (currentSize < capacity) {
-    		if (keyValueMap.containsKey(key)) {
-    			refreshKey(key);
-    		} else {
-    			++currentSize;
-    			recentList.add(key);
-    		}
+    	if (keyNodeMap.containsKey(key)) {
+			remove(key);
+			addToHead(key, value);
     	} else {
-    		if (keyValueMap.containsKey(key)) {
-    			refreshKey(key);
-    		} else {
-    			Integer oldKey = recentList.remove(0);
-    			keyValueMap.remove(oldKey);
-    			recentList.add(key);
-    		}
+        	if (currentSize < capacity) {
+    			++currentSize;
+    			addToHead(key, value);
+        	} else {
+    			int tailKey = removeTail();
+    			keyNodeMap.remove(tailKey);
+    			addToHead(key, value);
+        	}
     	}
-    	keyValueMap.put(key, value);
     }
 
-	private void refreshKey(int key) {
-		int i = 0;
-		for (; i < recentList.size(); ++i) {
-			if (recentList.get(i) == key) {
-				break;
-			}
-		}
-		recentList.remove(i);
-		recentList.add(key);
+	private void remove(int key) {
+		Node node = keyNodeMap.get(key);
+		node.pre.next = node.next;
+		node.next.pre = node.pre;
+	}
+
+	private void addToHead(int key, int value) {
+		Node node = new Node(key, value);
+		head.next.pre = node;
+		node.next = head.next;
+		node.pre = head;
+		head.next = node;
+		keyNodeMap.put(key, node);
+	}
+
+	private int removeTail() {
+		Node node = tail.pre;
+		node.pre.next = tail;
+		tail.pre = node.pre;
+		return node.key;
 	}
 }
