@@ -1,7 +1,6 @@
 package leetcode_20;
 
 import static org.junit.Assert.*;
-import leetcode_30.BinaryTreeLevelOrderTraversal;
 import leetcode_30.TreeNode;
 
 import org.junit.Test;
